@@ -3,6 +3,7 @@ const batch = require('../routes/batch');
 const users = require('../routes/users');
 const auth = require('../routes/auth');
 const oneview = require('../routes/oneview')
+const asquestion = require('../routes/asquestion')
 const error = require('../middleware/error');
 
 
@@ -18,6 +19,7 @@ module.exports = function(app) {
   app.use('/api/users', users);
   app.use('/api/auth', auth);
   app.use('/api/oneview',oneview);
+  app.use('/api/asquestion',asquestion)
 
   app.use(error);
 }
