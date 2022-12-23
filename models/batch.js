@@ -8,8 +8,10 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     unique:true
   },
   userid: {
-    type: String,
-    required: true
+    type: String
+  },
+  examinerid: {
+    type: String
   },
   type: {
     type: String,
@@ -23,22 +25,10 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     minlength: 5,
     maxlength: 6
   },
-  pcode: {
-    type: String,
-    required: true,
-    minlength: 3,
-    maxlength: 50
-  },
   ccode: {
     type: String,
     minlength: 3,
     maxlength: 500,
-    required: true
-  },
-  ptype: {
-    type: String,
-    minlength: 2,
-    maxlength: 2,
     required: true
   },
   mmarks: {
@@ -50,7 +40,6 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
   totalcopies: {
     type: Number,
     min:1,
-    max:30,
     required: true
   },
   attempts: {
@@ -60,6 +49,9 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     required: true
   },
   dtcreated: {
+    type: Date
+  },
+  dtexaminer: {
     type: Date
   },
   dtsubmitted: {
@@ -75,20 +67,16 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     status: String})],
 }));
 
-function validateBatch(batch) {
+function validateBatchCreate(batch) {
   const schema = {
     batchcode: Joi.string().required(),
-    userid: Joi.objectId().required(),
     status: Joi.string().allow(['created','saved','submitted']).required(),
     exam: Joi.string().min(5).max(6).required(),
-    pcode:Joi.string().min(3).max(50).required(),
     ccode:Joi.string().min(3).max(50).required(),
-    ptype:Joi.string().min(2).max(2).allow(['TE','ES','PJ','PV']).required(),
     mmarks:Joi.number().min(10).max(500).required(),
-    totalcopies:Joi.number().min(1).max(30).required(),
+    totalcopies:Joi.number().min(1).required(),
     attempts:Joi.number().min(0).max(5).required(),
     dtcreated:Joi.date(),
-    dtsubmitted:Joi.date(),
     type:Joi.string().allow(['marks1','marks2','reval1','reval2']).required(),
     marks:Joi.array().items(Joi.object({
       controlno:Joi.string().required(),
@@ -99,6 +87,29 @@ function validateBatch(batch) {
 
   return Joi.validate(batch, schema);
 }  
+function validateBatch(batch) {
+  const schema = {
+    batchcode: Joi.string().required(),
+    userid: Joi.objectId().required(),
+    status: Joi.string().allow(['created','saved','submitted']).required(),
+    exam: Joi.string().min(5).max(6).required(),
+    ccode:Joi.string().min(3).max(50).required(),
+    ptype:Joi.string().min(2).max(2).allow(['TE','ES','PJ','PV']).required(),
+    mmarks:Joi.number().min(10).max(500).required(),
+    totalcopies:Joi.number().min(1).required(),
+    attempts:Joi.number().min(0).max(5).required(),
+    dtcreated:Joi.date(),
+    type:Joi.string().allow(['marks1','marks2','reval1','reval2']).required(),
+    marks:Joi.array().items(Joi.object({
+      controlno:Joi.string().required(),
+      award:Joi.number().required(),
+      status:Joi.string().allow(['  ','Ab','UM','ZE']).required()
+    }))
+  };
+
+  return Joi.validate(batch, schema);
+}  
+
 function validateBatchMarks(batch) {
   const schema = {
     status: Joi.string().allow(['created','saved','submitted']).required(),
@@ -114,4 +125,5 @@ function validateBatchMarks(batch) {
 
 exports.Batch = Batch; 
 exports.validate = validateBatch;
+exports.validateCreate = validateBatchCreate;
 exports.validateMarks = validateBatchMarks;

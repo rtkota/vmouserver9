@@ -1,6 +1,6 @@
 const auth = require('../middleware/auth');
 const validateObjectId = require('../middleware/validateObjectId');
-const {Batch, validate, validateMarks} = require('../models/batch'); 
+const {Batch, validate, validateCreate,validateMarks} = require('../models/batch'); 
 const express = require('express');
 const router = express.Router();
 
@@ -26,9 +26,8 @@ router.get('/:bcd', auth, async (req, res) => {
 });
 
 router.post('/',  async (req, res) => {
-  const { error } = validate(req.body); 
-  console.log(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  const { error } = validateCreate(req.body); 
+  if (error) return res.status(400).send("Validation Error");
   const query = {"batchcode":req.body.batchcode};
   
   const batch1 = await Batch.find(query);
