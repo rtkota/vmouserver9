@@ -1,0 +1,161 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20240724.162736.18508.0.001.json",
+    "dumpEventTime": "2024-07-24T16:27:36Z",
+    "dumpEventTimeStamp": "1721818656449",
+    "processId": 18508,
+    "cwd": "F:\\vmouserver9",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "server.js"
+    ],
+    "nodejsVersion": "v12.15.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.15.0",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.15.0/node-v12.15.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.15.0/node-v12.15.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.15.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.19045",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 8179531,
+        "nice": 0,
+        "sys": 8653750,
+        "idle": 1161157359,
+        "irq": 931359
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 6512328,
+        "nice": 0,
+        "sys": 5181453,
+        "idle": 1166296718,
+        "irq": 46890
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 13125593,
+        "nice": 0,
+        "sys": 10941421,
+        "idle": 1153923484,
+        "irq": 134906
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 7581531,
+        "nice": 0,
+        "sys": 4526937,
+        "idle": 1165882031,
+        "irq": 26406
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 13123843,
+        "nice": 0,
+        "sys": 10125031,
+        "idle": 1154741625,
+        "irq": 47812
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 8523375,
+        "nice": 0,
+        "sys": 3873140,
+        "idle": 1165593968,
+        "irq": 28765
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 12756812,
+        "nice": 0,
+        "sys": 7264265,
+        "idle": 1157969406,
+        "irq": 42421
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz",
+        "speed": 3408,
+        "user": 14438625,
+        "nice": 0,
+        "sys": 4903984,
+        "idle": 1158647875,
+        "irq": 28390
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "4c:cc:6a:c3:cb:fa",
+        "address": "172.16.1.235",
+        "netmask": "255.255.254.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "SADM"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6c1341759",
+      "symbol": "std::basic_ost

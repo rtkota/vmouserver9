@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
+
 const Batch = mongoose.model('Batch', new mongoose.Schema({
   batchcode: {
     type:String,
@@ -10,9 +11,7 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
   userid: {
     type: String
   },
-  examinerid: {
-    type: String
-  },
+  examinerid:  {type: mongoose.Schema.Types.ObjectId, ref:'Examiner'},
   type: {
     type: String,
     required: true,
@@ -42,6 +41,14 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     min:1,
     required: true
   },
+  bundles: {
+    type: Number,
+    min:1,
+    required: true
+  },
+  prcity: {
+    type: String,
+  },
   attempts: {
     type: Number,
     min:0,
@@ -51,7 +58,10 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
   dtcreated: {
     type: Date
   },
-  dtexaminer: {
+  dtsend: {
+    type: Date
+  },
+  dtrecd: {
     type: Date
   },
   dtsubmitted: {
@@ -65,7 +75,11 @@ const Batch = mongoose.model('Batch', new mongoose.Schema({
     controlno: String,
     award: Number,
     status: String})],
-}));
+  invalid: [new mongoose.Schema({
+    controlno: String,
+    marks: Number,
+    copyno: String})],
+  }));
 
 function validateBatchCreate(batch) {
   const schema = {
@@ -75,13 +89,18 @@ function validateBatchCreate(batch) {
     ccode:Joi.string().min(3).max(50).required(),
     mmarks:Joi.number().min(10).max(500).required(),
     totalcopies:Joi.number().min(1).required(),
+    bundles:Joi.number().min(1).required(),
     attempts:Joi.number().min(0).max(5).required(),
     dtcreated:Joi.date(),
     type:Joi.string().allow(['marks1','marks2','reval1','reval2']).required(),
     marks:Joi.array().items(Joi.object({
       controlno:Joi.string().required(),
       award:Joi.number().required(),
-      status:Joi.string().allow(['  ','Ab','UM','ZE']).required()
+      status:Joi.string().allow(['  ','Ab','UM','ZE']).required()})),
+    invalid:Joi.array().items(Joi.object({
+      controlno:Joi.string().required(),
+      marks:Joi.number().required(),
+      copyno:Joi.strint().required()
     }))
   };
 
@@ -97,6 +116,7 @@ function validateBatch(batch) {
     ptype:Joi.string().min(2).max(2).allow(['TE','ES','PJ','PV']).required(),
     mmarks:Joi.number().min(10).max(500).required(),
     totalcopies:Joi.number().min(1).required(),
+    bundles:Joi.number().min(1).required(),
     attempts:Joi.number().min(0).max(5).required(),
     dtcreated:Joi.date(),
     type:Joi.string().allow(['marks1','marks2','reval1','reval2']).required(),

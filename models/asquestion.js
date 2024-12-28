@@ -12,6 +12,7 @@ const Asquestion = mongoose.model('Asquestion', new mongoose.Schema({
     minlength: 3,
     maxlength: 50
   },
+  
   ccode: {
     type: String,
     minlength: 3,
